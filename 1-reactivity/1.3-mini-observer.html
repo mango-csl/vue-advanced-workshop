@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: mango_sl
+ * @since: 2021-05-22 14:15:02
+ * @LastAuthor: mango_sl
+ * @lastTime: 2021-10-10 23:12:55
+-->
 <script>
 function isObject (obj) {
     return typeof obj === 'object'
@@ -49,7 +57,7 @@ window.Dep = class Dep {
 }
 
 let activeUpdate
-
+//相当于就是一个watch过程
 function autorun (update) {
   function wrappedUpdate () {
     activeUpdate = wrappedUpdate
@@ -58,4 +66,19 @@ function autorun (update) {
   }
   wrappedUpdate()
 }
+
+const state = {
+  count: 0
+}
+
+observe(state)
+
+autorun(() => {
+  console.log(state.count)
+})
+// should immediately log "count is: 0"
+autorun(() => {
+  console.log(state.count)
+})
+state.count++
 </script>

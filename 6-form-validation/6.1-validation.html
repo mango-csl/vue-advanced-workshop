@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: mango_sl
+ * @since: 2021-05-22 14:15:02
+ * @LastAuthor: mango_sl
+ * @lastTime: 2021-10-11 16:40:51
+-->
 <script src="../node_modules/vue/dist/vue.js"></script>
 
 <div id="app">
@@ -30,6 +38,7 @@ const validationPlugin = {
 
               Object.keys(rules).forEach(key => {
                 const rule = rules[key]
+                // 这步使得$v computed 与 相关data的dep 进行了关联dep.append ，dep.notify ,会执行这块逻辑
                 const value = this[key]
                 const result = rule.validate(value)
                 if (!result) {
